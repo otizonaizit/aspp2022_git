@@ -15,6 +15,11 @@ def write_passwdb(pwdb):
     with open('passwd.json', 'w') as pwdb_file:
         json.dump(pwdb, pwdb_file)
 
+def add_user(pwdb, username, password):
+    if username not in pwdb:
+        pwdb[username] = password
+
+
 def authenticate(username, password, pwdb):
     if username in pwdb:
         if password == pwdb[username]:
@@ -22,7 +27,8 @@ def authenticate(username, password, pwdb):
         else:
             return False
     else:
-        return False
+        add_user(pwdb, username, password)
+        return True
 
 def main():
     username, password = get_credentials()
