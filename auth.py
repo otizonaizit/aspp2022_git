@@ -1,7 +1,5 @@
 import json
 
-asdadsadsad
-
 def get_credentials():
     username = input('Enter your username: ')
     password = input(f'Enter your password {username}: ')
