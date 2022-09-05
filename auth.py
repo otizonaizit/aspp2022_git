@@ -2,7 +2,7 @@ import json
 
 def get_credentials():
     username = input('Enter your username: ')
-    password = input(f'Enter your password {username}: ')
+    password = pwhash(input(f'Enter your password {username}: '))
 
     return username, password
 
@@ -14,6 +14,12 @@ def read_passwdb():
 def write_passwdb(pwdb):
     with open('passwd.json', 'w') as pwdb_file:
         json.dump(pwdb, pwdb_file)
+
+def pwhash(password):
+    pwh = 0
+    for char in password:
+        pwh += ord(char)
+    return pwh
 
 def add_user(pwdb, username, password):
     if username not in pwdb:
